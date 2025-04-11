@@ -1,7 +1,8 @@
 <?php
-namespace LazarusPhp\SecurityFramework;
 
-class EncryptionCall
+namespace LazarusPhp\SecurityFramework\Traits;
+
+trait AesEncryption
 {
     private static $key = "";
     private static $cipher = 'AES-256-CBC';
@@ -12,9 +13,14 @@ class EncryptionCall
          self::$key = $key;
     }
 
+    public static function getKey():string
+    {
+        return self::$key;
+    }   
+
     public static function encryptValue($value):string
     {
-        if (empty(self::$key)) {
+        if (!empty(self::$key)) {
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::$cipher));
             $encrypted = openssl_encrypt($value, self::$cipher, self::$key, 0, $iv);
 
@@ -35,5 +41,4 @@ class EncryptionCall
     
         return openssl_decrypt($encrypted, self::$cipher, self::$key, 0, $iv);
     }
-    
 }
