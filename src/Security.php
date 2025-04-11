@@ -60,22 +60,5 @@ class Security
         }
     }
 
-    public static function setEnckey(?string $key=null)
-    {
-        
-        FileCrafter::bind("SecurityKey",self::$filename,[JsonWriter::class]);
-        FileCrafter::generate("SecurityKey",function($writer)
-        {
-            $key = $key ?? self::setPassword(bin2hex(random_bytes(32)));
-            $date = Date::withAddedTime("now","P3D")->format("Y-m-d H:i:s");
-            $now = Date::create()->format("Y-m-d H:i:s");
-            $writer->preventOverwrite("EncryptionKey","Key","Created");
-            $writer->set("EncryptionKey","Key",$key);
-            $writer->set("EncryptionKey","Created",$now);
-            
-                $writer->save(); 
-            self::setkey($writer->fetch()->EncryptionKey->Key);
-        });
-    }
 
 }
