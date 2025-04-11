@@ -42,7 +42,7 @@ trait AesEncryption
         }
     }
     
-    public static function decscrypt($value):bool|string
+    public static function decrypt($value):bool|string
     {
         $decoded = base64_decode($value);
         // Extract IV and encrypted data
