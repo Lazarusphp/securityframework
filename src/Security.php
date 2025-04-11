@@ -4,16 +4,13 @@ namespace LazarusPhp\SecurityFramework;
 use LazarusPhp\SecurityFramework\CoreFiles\SecurityCore;
 use LazarusPhp\SecurityFramework\Interface\SecurityInterface;
 use LazarusPhp\SessionManager\Sessions;
-use LazarusPhp\DateManager\Date;
 use LazarusPhp\SessionManager\SessionsFactory;
-use LazarusPhp\FileCrafter\FileCrafter;
-use LazarusPhp\FileCrafter\Writers\JsonWriter;
+
 use LazarusPhp\SecurityFramework\Traits\AesEncryption;
 
 class Security
 {
     private $token;
-    private static $filename = ROOT."/Storage/EncryptionKey.json";
     use AesEncryption;
 
 

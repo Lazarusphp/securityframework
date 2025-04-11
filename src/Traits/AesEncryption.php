@@ -1,11 +1,15 @@
 <?php
 
 namespace LazarusPhp\SecurityFramework\Traits;
+use LazarusPhp\FileCrafter\FileCrafter;
+use LazarusPhp\FileCrafter\Writers\JsonWriter;
+use LazarusPhp\DateManager\Date;
 
 trait AesEncryption
 {
     private static $key = "";
     private static $cipher = 'AES-256-CBC';
+    private static $filename = ROOT."/Storage/EncryptionKey.json";
 
     public static function generateKey(?string $key=null)
     {
