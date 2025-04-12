@@ -28,12 +28,12 @@ trait AesEncryption
         });
     }
 
-    private static function setKey($key):void
+    private static function setKey(string $key):void
     {
          self::$key = $key;
     }
 
-    public static function encrypt($value):string
+    public static function encrypt(string $value)
     {
         if (!empty(self::$key)) {
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::$cipher));
@@ -46,7 +46,7 @@ trait AesEncryption
         }
     }
     
-    public static function decrypt($value):bool|string
+    public static function decrypt(string $value):bool|string
     {
         $decoded = base64_decode($value);
         // Extract IV and encrypted data
